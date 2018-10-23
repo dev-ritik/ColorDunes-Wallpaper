@@ -21,7 +21,6 @@ public class LiveTimeWallpaperService extends WallpaperService {
 
     static boolean format24 = false;
     int xPos = 0, yPos = 0;
-    Paint alphaPaint;
     SharedPreferences preferences;
     String time = "";
 
@@ -55,9 +54,6 @@ public class LiveTimeWallpaperService extends WallpaperService {
             paint.setTextSize(100);
             paint.setDither(true);
 
-            alphaPaint = new Paint();
-            alphaPaint.setAlpha(80);
-
             handler.post(drawRunner);
         }
 
@@ -74,6 +70,7 @@ public class LiveTimeWallpaperService extends WallpaperService {
         }
 
         private void draw() {
+            Log.i("point 77", "draw: start");
             format24 = preferences.getBoolean("24_hr", false);
 
             calendar = Calendar.getInstance();
