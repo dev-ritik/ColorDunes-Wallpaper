@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class SetWallpaperActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_wallpaper);
+        setContentView(R.layout.activity_main);
 
         final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -23,13 +23,13 @@ public class SetWallpaperActivity extends AppCompatActivity {
                 Intent intent;
                 try {
                     intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
-                    intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, new ComponentName(SetWallpaperActivity.this, LiveTimeWallpaperService.class));
+                    intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, new ComponentName(MainActivity.this, LiveTimeWallpaperService.class));
                     startActivity(intent);
                 } catch (android.content.ActivityNotFoundException e3) {
-                    Toast.makeText(SetWallpaperActivity.this, "Sorry there's an error!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Unsupported device!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        }
+    }
 
 }
