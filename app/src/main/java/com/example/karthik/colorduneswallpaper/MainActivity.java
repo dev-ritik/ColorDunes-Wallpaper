@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent;
                 try {
-                    intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
+                    intent = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER); // launch live wallpaper preview,
                     intent.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, new ComponentName(MainActivity.this, LiveTimeWallpaperService.class));
+                    //specifies the ComponentName of a live wallpaper that should be shown as a preview, for the user to confirm.
+                    // extra component required
                     startActivity(intent);
                 } catch (android.content.ActivityNotFoundException e3) {
                     Toast.makeText(MainActivity.this, "Unsupported device!!", Toast.LENGTH_SHORT).show();

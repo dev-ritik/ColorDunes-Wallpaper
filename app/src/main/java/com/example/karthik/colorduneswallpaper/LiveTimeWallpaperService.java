@@ -30,11 +30,12 @@ public class LiveTimeWallpaperService extends WallpaperService {
 
     private class WallpaperEngine extends Engine {
 
-        private final Handler handler = new Handler();
+        private final Handler handler = new Handler();// extended from import android.os.Handler;
         Calendar calendar;
         private Paint paint = new Paint();
         private boolean visible = true;
         private final Runnable drawRunner = new Runnable() {
+            //The Runnable interface should be implemented by any class whose instances are intended to be executed by a thread.
             @Override
             public void run() {
                 draw();
@@ -76,18 +77,21 @@ public class LiveTimeWallpaperService extends WallpaperService {
 
             try {
                 canvas = holder.lockCanvas();
+                // Start editing the pixels in the surface.
+
                 if (canvas != null) {
 
                     canvas.drawColor(color);
 
-                    xPos = (canvas.getWidth() / 2) - (int) (paint.measureText(time) / 2);
-                    yPos = (int) ((canvas.getHeight() / 2) - ((paint.ascent() + paint.descent()) / 2));
+                    xPos = (canvas.getWidth() / 2) - (int) (paint.measureText(time) / 2); //image
+                    yPos = (int) ((canvas.getHeight() / 2) - ((paint.ascent() + paint.descent()) / 2)); //image
                     canvas.drawText(time, xPos, yPos, paint);
 
                 }
             } finally {
                 if (canvas != null) {
                     holder.unlockCanvasAndPost(canvas);
+                    //Finish editing pixels in the surface. After this call, the surface's current pixels will be shown on the screen
                 }
             }
 
